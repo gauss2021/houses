@@ -109,72 +109,169 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Afficher le premier slide au chargement avec l'indicateur en bg-amber-500
     goToSlide(currentIndex);
-    });
-  
-  
+
     // Logique du faq
     
     for(let i=0;i<=5;i++){
     
-    const element =document.getElementById('faq-item-'+i);
-    
-    const paragraphe= document.getElementById('faq-paragraphe-'+i);
-    
-    if(element && paragraphe){
-        element.addEventListener('click',()=>{
-    
-        if(element.classList.contains("bx-chevron-up")){
-    
-            element.classList.remove('bx-chevron-up');
-    
-            element.classList.add('bx-chevron-down');
-    
-            paragraphe.classList.toggle('hidden');
-        }else{
-    
-            element.classList.remove('bx-chevron-down');
-    
-            element.classList.add('bx-chevron-up');
-            paragraphe.classList.toggle('hidden');
-    
-        }
-    
-        const id= element.id.charAt(element.id.length-1);
-            console.log(id);
-    
-        for (let index = 0; index <=5; index++) {
-    
-            if(index !=id){
-            const paragraphe= document.getElementById('faq-paragraphe-'+index);
-    
-            paragraphe.classList.add('hidden');
+        const element =document.getElementById('faq-item-'+i);
+        
+        const paragraphe= document.getElementById('faq-paragraphe-'+i);
+        
+        if(element && paragraphe){
+            element.addEventListener('click',()=>{
+        
+            if(element.classList.contains("bx-chevron-up")){
+        
+                element.classList.remove('bx-chevron-up');
+        
+                element.classList.add('bx-chevron-down');
+        
+                paragraphe.classList.toggle('hidden');
+            }else{
+        
+                element.classList.remove('bx-chevron-down');
+        
+                element.classList.add('bx-chevron-up');
+                paragraphe.classList.toggle('hidden');
+        
             }
         
+            const id= element.id.charAt(element.id.length-1);
+                console.log(id);
+        
+            for (let index = 0; index <=5; index++) {
+        
+                if(index !=id){
+                const paragraphe= document.getElementById('faq-paragraphe-'+index);
+        
+                paragraphe.classList.add('hidden');
+                }
+            
+            }
+            });
         }
+        
+        
+        
+        }
+      
+      
+        // Script pour mettre à jour les valeurs min et max du prix affichées
+        const minRange = document.getElementById('prix-min');
+        const maxRange = document.getElementById('prix-max');
+        const minPrice = document.getElementById('min-price');
+        const maxPrice = document.getElementById('max-price');
+      
+        minRange.addEventListener('input', () => {
+            console.log("min");
+            minPrice.textContent = `${minRange.value} FCFA`;
         });
-    }
-    
-    
-    
-    }
+        maxRange.addEventListener('input', () => {
+            console.log("max");
+            maxPrice.textContent = `${maxRange.value} FCFA`;
+        });
+      
+
+        
+        // Logique de la page house
+
+        //Selection du grid vertical
+
+        const vertical= document.getElementById('layoult-vertical');
+
+        if(vertical){
+
+            vertical.addEventListener('click',()=>{
+                document.getElementById('layoult-horizontal')?.classList.remove('text-amber-500');
+            
+                vertical.classList.add('text-amber-500');
+
+                document.getElementById('final-container-houses')?.classList.add('flex-col');
+
+              let items= document.getElementsByClassName('items-house');
+
+
+              if(items.length >0){
+                for (let index = 0; index < items.length; index++) {
+                    const element = items[index];
+
+                    element.classList.add("flex", "bg-white", "rounded-xl", "gap-6");
+
+                    console.log("les enfants de chaque element----",element.children);
+
+                    const children=element.children;
+
+                    console.log('le premier fils',children[0]);
+
+                    children[0].style.width="420px";
+
+                    children[0].children[0].classList.remove('rounded-xl');
+                    
+                    children[0].children[0].classList.add('rounded-l-xl');
+
+                    
+                    children[1].classList.add("flex","flex-col","justify-center");
+
+
+
+
+                    
+                }
+              }
+            })
+        }
+
+        //Selection du grid horizental
+
+        const horizontal= document.getElementById('layoult-horizontal');
+
+        if(horizontal){
+
+            horizontal.addEventListener('click',()=>{
+                document.getElementById('layoult-vertical')?.classList.remove('text-amber-500');
+            
+                horizontal.classList.add('text-amber-500');
+
+                document.getElementById('final-container-houses')?.classList.remove('flex-col');
+
+              let items= document.getElementsByClassName('items-house');
+
+
+              if(items.length >0){
+                for (let index = 0; index < items.length; index++) {
+                    const element = items[index];
+
+                    element.classList.remove("flex", "bg-white", "rounded-xl", "gap-6");
+
+                    console.log("les enfants de chaque element----",element.children);
+
+                    const children=element.children;
+
+                    console.log('le premier fils',children[0]);
+
+                    children[0].style.width="380px";
+
+                    children[0].children[0].classList.remove('rounded_l-xl');
+                    
+                    children[0].children[0].classList.add('rounded-xl');
+
+                    
+                    children[1].classList.remove("flex","flex-col","justify-center");
+
+                    
+                }
+              }
+
+                
+            })
+        }
+
+
+});
   
   
-    // Script pour mettre à jour les valeurs min et max du prix affichées
-    const minRange = document.getElementById('prix-min');
-    const maxRange = document.getElementById('prix-max');
-    const minPrice = document.getElementById('min-price');
-    const maxPrice = document.getElementById('max-price');
-  
-    minRange.addEventListener('input', () => {
-        console.log("min");
-        minPrice.textContent = `${minRange.value} FCFA`;
-    });
-    maxRange.addEventListener('input', () => {
-        console.log("max");
-        maxPrice.textContent = `${maxRange.value} FCFA`;
-    });
-  
-  
+      
   
   
   
