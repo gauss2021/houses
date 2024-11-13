@@ -1,6 +1,18 @@
 import './bootstrap';
 
+import.meta.glob([
+    './../images/**'
+]);
+
 // import 'select2/dist/css/select2.min.css';
+import Swiper from 'swiper';
+import { Navigation,} from 'swiper/modules';
+// import Swiper and modules styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+
 
 
 
@@ -8,6 +20,16 @@ import './bootstrap';
 // Testimoniaux carousel 
 document.addEventListener("DOMContentLoaded", function () {
 
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        modules: [Navigation],
+    });
 
     const items = document.querySelectorAll('.carousel-item');
     let currentItem = 0;
@@ -320,6 +342,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 
             });
         }
+
+        
+
+        console.log('le suiper',swiper);
 
 });
   

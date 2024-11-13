@@ -1,6 +1,6 @@
 <div class="items-house sm:w-[48%] lg:w-[32%]">
     <div id="item-house-head" class="relative sm:h-[200px] md:h-[260px]">
-        <img src={{ asset("images/apartment-1.jpg") }} alt="" srcset="" class="rounded-xl w-full h-full">
+        <img src={{ Vite::asset("resources/images/apartment-1.jpg") }} alt="" srcset="" class="rounded-xl w-full h-full">
         <span class="absolute top-2 left-2 px-3 bg-white rounded-2xl text-amber-500 flex items-center gap-1"><i class='bx bxs-camera text-amber-500' style="font-size: 22px"></i><span class="font-medium">3</span></span>
         <span class="absolute top-2 right-2 p-1 bg-white rounded-full text-amber-500 flex justify-center"><i class='bx bx-heart' style="font-size: 22px"></i></span>
     </div>

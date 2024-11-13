@@ -10,3 +10,69 @@
     scroll-behavior: smooth;
     transition: transform 1.5s ease-in-out;
 }
+
+/* Carousel sur la page detail d'une maison */
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+.swiper-slide {
+text-align: center;
+font-size: 18px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.swiper-slide img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.swiper {
+margin-left: auto;
+margin-right: auto;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    background: #1f2937;
+    color: #fff !important; 
+    border-radius: 9999px;/* Ou utilise display: none si tu n'as pas besoin de leurs styles */
+    padding-left: 1rem;
+    padding-right: 1rem !important;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    height: 30px!important;
+    font-size: 24px !important;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+    font-family: swiper-icons !important;
+    font-size: 12px !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-variant: initial !important;
+    line-height: 1 !important;
+}
+
+.swiper-button-next{
+    margin-right: 1.5rem !important;
+}
+
+.swiper-button-prev{
+    margin-left: 1.5rem !important;
+}
+
+@media (max-width:639px) {
+    
+    div.swiper-slide.items-slide.swiper-slide-active{
+        height:260px !important;
+    }
+}
+
+
+

@@ -6,7 +6,7 @@
         <!-- Carousel container -->
         <div class="relative h-[60vh] sm:overflow-hidden sm:h-[480px] md:h-[550px]">
           <!-- Slides -->
-          <div class="carousel-item duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0" style="background-image: url(images/banner-1.jpg); background-repeat: no-repeat;background-size:cover;">
+          <div class="carousel-item duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0" style="background-image: url({{ Vite::asset('resources/images/banner-1.jpg') }}); background-repeat: no-repeat;background-size:cover;">
             <div class="w-full h-full flex justify-between md:justify-start gap-6 items-center px-16" style="background:#000000A6">
                 <div class="w-[80%] sm:w-[70%] md:w-[60%]"> 
                     <h1 style="font-family: poppins;" class="text-white font-bold uppercase sm:text-2xl md:text-3xl">Trouvez votre prochain chez-vous facilement !</h1>
@@ -24,7 +24,7 @@
                 </div>
             </div>
           </div>
-          <div class="carousel-item duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full" style="background-image: url(images/banner-2.jpg);background-repeat: no-repeat;background-size: cover;">
+          <div class="carousel-item duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full" style="background-image: url({{ Vite::asset('resources/images/banner-2.jpg') }});background-repeat: no-repeat;background-size: cover;">
             <div class="w-full h-full flex gap-6 items-center px-16" style="background:#000000A6">
               <div class="w-[80%] sm:w-[70%] md:w-[60%]"> 
                   <h1 style="font-family: poppins;" class="text-white font-bold uppercase sm:text-2xl md:text-3xl">Accès illimité pour seulement 5000 FCFA par mois !</h1>
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-          <div class="carousel-item duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full" style="background-image: url(images/banner-1.jpg);background-repeat: no-repeat;background-size: cover;">
+          <div class="carousel-item duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full" style="background-image: url({{ Vite::asset('resources/images/banner-1.jpg') }});background-repeat: no-repeat;background-size: cover;">
             <div class="w-full h-full flex gap-6 items-center px-16" style="background:#000000A6">
               <div class="w-[80%] sm:w-[70%] md:w-[60%]"> 
                   <h1 style="font-family: poppins;" class="text-white font-bold uppercase sm:text-2xl md:text-3xl">Propriétaires : Louez rapidement votre bien !</h1>
@@ -76,12 +76,12 @@
     <h2 class="font-bold md:text-xl lg:text-2xl" style="font-family: poppins">Decouvrez les recentes maisons misent en location</h2>
     <p class="mt-3 font-serif">Toutes les maisons sont pres de chez vous</p>
     <div class="flex flex-wrap mt-6 sm:justify-between gap-y-10">
-      <x-house></x-house>
-      <x-house></x-house>
-      <x-house></x-house>
-      <x-house></x-house>
-      <x-house></x-house>
-      <x-house></x-house> 
+      <x-house :id='1'></x-house>
+      <x-house :id='2'></x-house>
+      <x-house :id='3'></x-house>
+      <x-house :id='4'></x-house>
+      <x-house :id='5'></x-house>
+      <x-house :id='6'></x-house> 
     </div>
     <div class="flex mt-6 justify-center">
           <a href="#" class="underline font-medium">En voir plus</a>
@@ -93,7 +93,7 @@
 
     <div class="flex justify-center sm:justify-start sm:gap-6 md:items-center mt-5">
         <div class="hidden sm:block sm:w-[40%] lg:w-[48%]">
-          <img src="{{ asset('images/girl-glasses.jpg') }}" alt="girl-glasses" srcset="" class="rounded-lg sm:h-[200px] sm:w-[300px] md:h-[300px] md:w-[400px] lg:w-[600px] lg:h-[400px]" >
+          <img src="{{ Vite::asset('resources/images/girl-glasses.jpg') }}" alt="girl-glasses" srcset="" class="rounded-lg sm:h-[200px] sm:w-[300px] md:h-[300px] md:w-[400px] lg:w-[600px] lg:h-[400px]" >
         </div>
         <div class="w-[100%] sm:w-[60%] lg-w[48%]">
           <p class="font-serif text-center sm:text-justify" style="font-size: 18px">

@@ -11,3 +11,8 @@ Route::get('/', function () {
 Route::get('/maisons', function () {
     return view('houses');
 });
+
+Route::get('/maison/{id}', function ($id) {
+
+    return view('house');
+});

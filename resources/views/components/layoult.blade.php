@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-gray-100">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,13 +56,12 @@
                     <div class="flex space-x-4">
                       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="/" class="px-3 py-2 text-sm font-medium hover:text-amber-500 {{ request()->is('/')? 'text-amber-500':'' }}">Accueil</a>
-                    <a href="/maisons" class="px-3 py-2 text-sm font-medium hover:text-amber-500 {{ request()->is('/maisons')?'text-amber-500':'' }}">Maisons</a>
-                    <a href="#" class="px-3 py-2 text-sm font-medium hover:text-amber-500">Prestateurs</a>
+                    <a href="/maisons" class="px-3 py-2 text-sm font-medium hover:text-amber-500 {{ request()->is('maisons')?'text-amber-500':'' }}">Maisons</a>
                     <a href="#" class="px-3 py-2 text-sm font-medium hover:text-amber-500">Abonnements</a>
                     </div>
                   </div>
                 </div>
-                <div class="border border-slate-300 rounded-lg flex flex-row px-2 py-2 items-center hidden lg:block">
+                <div class="border border-slate-300 rounded-lg lg:flex flex-row px-2 py-2 items-center hidden">
                    <i class='bx bx-search mr-1' style="font-size: 20px"></i>
                    <input type="text" class="px-2 border-0 focus:outline-none focus:border-none" placeholder="Rechercher">
                    
@@ -112,10 +111,9 @@
             <div class="sm:hidden hidden" id="mobile-menu">
               <div class="space-y-1 px-2 pb-3 pt-2">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Acceuil</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Jobs</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Prestateurs</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Abonnements</a>
+                <a href="/" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Acceuil</a>
+                <a href="/maisons" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Maisons</a>
+                <a href="/abonnements" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Abonnements</a>
               </div>
             </div>
         </nav>

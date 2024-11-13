@@ -94,18 +94,18 @@
         <div class="w-full flex justify-center sm:justify-between">
             <div class="w-[100%] sm:w-[49%]">
                 <h2 class="font-bold text-xl text-center sm:text-left sm:text-2xl" style="font-family: poppins">Rentabilisez ou trouvez votre bien en quelques clics</h2>
-                <p class="mt-3 font-serif">Vous êtes propriétaire ? Profitez de notre plateforme pour mettre votre bien en location en toute simplicité et atteindre un large public d’intéressés. Vous cherchez un logement ? Abonnez-vous pour explorer des centaines d’annonces vérifiées et faites votre choix parmi une grande variété de maisons et appartements.</p>
+                <p class="mt-3 font-serif text-center sm:text-left">Vous êtes propriétaire ? Profitez de notre plateforme pour mettre votre bien en location en toute simplicité et atteindre un large public d’intéressés. Vous cherchez un logement ? Abonnez-vous pour explorer des centaines d’annonces vérifiées et faites votre choix parmi une grande variété de maisons et appartements.</p>
                 <div class="flex gap-4 mt-4">
-                    <a href="#" class="relative font-bold rounded-sm bg-amber-500 px-4 py-2 text-white hover:bg-amber-300" style="font-family: poppins">
+                    <a href="#" class="relative text-base font-bold rounded-sm bg-amber-500 px-4 py-2 text-white hover:bg-amber-300" style="font-family: poppins">
                       Publier votre maison
                     </a>
-                    <a href="#" class="relative font-bold rounded-sm bg-amber-500 px-4 py-2 text-white hover:bg-amber-300" style="font-family: poppins">
+                    <a href="#" class="relative text-base font-bold rounded-sm bg-amber-500 px-4 py-2 text-white hover:bg-amber-300" style="font-family: poppins">
                         Payer votre abonnement
                     </a>
                   </div>
             </div>
             <div class=" hidden sm:block sm:w-[49%]">
-                <img src="{{ asset('images/men-glasses.jpg') }}" alt="girl-glasses" srcset="" style="width: 600px;height:400px" class="rounded-lg" >
+                <img src="{{ Vite::asset('resources/images/men-glasses.jpg') }}" alt="girl-glasses" srcset="" style="width: 600px;height:400px" class="rounded-lg" >
             </div>
         </div>
     </section>
