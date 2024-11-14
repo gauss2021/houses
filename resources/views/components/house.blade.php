@@ -1,12 +1,12 @@
 @props(['id'])
 
-<div class="w-[100%] sm:w-[48%] lg:w-[32%]">
+<div class="w-[100%] sm:w-[48%] lg:w-[32%] border border-transparent hover:border-amber-500 group transition-colors duration-300 rounded-xl">
     <div class="relative sm:h-[200px] md:h-[260px]">
        <a href="{{ "/maison/$id" }}"> <img src={{ Vite::asset('resources/images/apartment-1.jpg') }} alt="" srcset="" class="rounded-xl h-full cursor-pointer"></a>
         <span class="absolute top-2 left-2 px-3 bg-white rounded-2xl text-amber-500 flex items-center gap-1"><i class='bx bxs-camera text-amber-500' style="font-size: 22px"></i><span class="font-medium">3</span></span>
         <span class="absolute top-2 right-2 p-1 bg-white rounded-full text-amber-500 flex justify-center"><i class='bx bx-heart' style="font-size: 22px"></i></span>
     </div>
-    <a href="{{ "/maison/$id" }}"><h3 class="font-bold mt-4" style="font-family: poppins">Superbe Maison</h3></a> 
+    <a href="{{ "/maison/$id" }}"><h3 class="font-bold mt-4 group-hover:text-amber-500 transition-colors duration-300" style="font-family: poppins">Superbe Maison</h3></a> 
     <div class="mt-4 flex gap-1 items-center">
         <i class='bx bx-location-plus text-amber-500' style="font-size: 22px"></i>
         <p class="font-serif">55 Rue Bonga moungalie</p>

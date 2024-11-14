@@ -67,11 +67,31 @@ margin-right: auto;
     margin-left: 1.5rem !important;
 }
 
+
+
+@media (min-width:640px) {
+    
+    .inscription{
+        background: url("http://localhost:8000/images/login-image.jpg") !important;
+        background-repeat: no-repeat !important;
+        background-size:cover !important;
+    }
+}
+
+
 @media (max-width:639px) {
     
     div.swiper-slide.items-slide.swiper-slide-active{
         height:260px !important;
     }
+
+    .inscription{    
+    --tw-bg-opacity: 1 !important;
+    background-color: #f59e0b !important;
+
+    }
+
+    
 }
 
 

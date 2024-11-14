@@ -67,7 +67,7 @@
                    
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <a href="#" class="relative font-bold rounded-lg bg-amber-500 px-4 py-2 text-white hover:bg-amber-300">
+                  <a href="/connexion" class="relative font-bold rounded-lg bg-amber-500 px-4 py-2 text-white hover:bg-amber-300">
                     Se connecter
                   </a>
 

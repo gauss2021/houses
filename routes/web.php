@@ -16,3 +16,15 @@ Route::get('/maison/{id}', function ($id) {
 
     return view('house');
 });
+
+Route::get('/inscription/',function(){
+
+    return view("register");
+
+});
+
+Route::get('/connexion/',function(){
+
+    return view("connexion");
+
+});
