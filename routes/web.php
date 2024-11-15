@@ -28,3 +28,11 @@ Route::get('/connexion/',function(){
     return view("connexion");
 
 });
+
+
+
+Route::get('/abonnement/',function(){
+
+    return view("abonnement");
+
+});

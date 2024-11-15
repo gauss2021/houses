@@ -57,7 +57,7 @@
                       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="/" class="px-3 py-2 text-sm font-medium hover:text-amber-500 {{ request()->is('/')? 'text-amber-500':'' }}">Accueil</a>
                     <a href="/maisons" class="px-3 py-2 text-sm font-medium hover:text-amber-500 {{ request()->is('maisons')?'text-amber-500':'' }}">Maisons</a>
-                    <a href="#" class="px-3 py-2 text-sm font-medium hover:text-amber-500">Abonnements</a>
+                    <a href="/abonnement" class="px-3 py-2 text-sm font-medium hover:text-amber-500 {{ request()->is('abonnement')?'text-amber-500':'' }}">Abonnements</a>
                     </div>
                   </div>
                 </div>
@@ -113,7 +113,7 @@
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="/" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Acceuil</a>
                 <a href="/maisons" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Maisons</a>
-                <a href="/abonnements" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Abonnements</a>
+                <a href="/abonnement" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Abonnements</a>
               </div>
             </div>
         </nav>

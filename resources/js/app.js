@@ -180,172 +180,178 @@ document.addEventListener("DOMContentLoaded", function () {
         
         
         
-        }
+    }
       
       
         // Script pour mettre à jour les valeurs min et max du prix affichées
-        const minRange = document.getElementById('prix-min');
-        const maxRange = document.getElementById('prix-max');
-        const minPrice = document.getElementById('min-price');
-        const maxPrice = document.getElementById('max-price');
+    const minRange = document.getElementById('prix-min');
+    const maxRange = document.getElementById('prix-max');
+    const minPrice = document.getElementById('min-price');
+    const maxPrice = document.getElementById('max-price');
+    
+    minRange?.addEventListener('input', () => {
+        console.log("min");
+        minPrice.textContent = `${minRange.value} FCFA`;
+    });
+    maxRange?.addEventListener('input', () => {
+        console.log("max");
+        maxPrice.textContent = `${maxRange.value} FCFA`;
+    });
       
-        minRange?.addEventListener('input', () => {
-            console.log("min");
-            minPrice.textContent = `${minRange.value} FCFA`;
+
+    
+    // Logique de la page house
+
+    //Selection du grid vertical
+
+    const vertical= document.getElementById('layoult-vertical');
+
+    if(vertical){
+
+        vertical.addEventListener('click',()=>{
+
+            console.log("----------VERTICAL-------");
+
+            document.getElementById('layoult-horizontal')?.classList.remove('text-amber-500');
+        
+            vertical.classList.add('text-amber-500');
+
+            document.getElementById('final-container-houses')?.classList.add('flex-col');
+
+            let items= document.getElementsByClassName('items-house');
+
+            if(items.length >0){
+                for (let index = 0; index < items.length; index++) {
+                    const element = items[index];
+
+                    element.classList.add("flex", "bg-white", "rounded-xl", "gap-6");
+
+                    element.style.width="100%";
+
+                    console.log("les enfants de chaque element----",element.children);
+
+                    const children=element.children;
+
+                    // console.log('le premier fils',children[0]);
+
+                    // children[0].style.width="420px";
+
+                    children[0].children[0].classList.remove('rounded-xl');
+                    
+                    children[0].children[0].classList.add('rounded-l-xl');
+
+                    
+                    children[1].classList.add("flex","flex-col","justify-center");
+
+
+
+
+                    
+                }
+            }
+        })
+    }
+
+    //Selection du grid horizental
+
+    const horizontal= document.getElementById('layoult-horizontal');
+
+    if(horizontal){
+
+        horizontal.addEventListener('click',()=>{
+
+            console.log("----------Horizental-------");
+
+            document.getElementById('layoult-vertical')?.classList.remove('text-amber-500');
+        
+            horizontal.classList.add('text-amber-500');
+
+            document.getElementById('final-container-houses')?.classList.remove('flex-col');
+
+            let items= document.getElementsByClassName('items-house');
+
+
+            if(items.length >0){
+                for (let index = 0; index < items.length; index++) {
+                    const element = items[index];
+
+                    element.classList.remove("flex", "bg-white", "rounded-xl", "gap-6");
+
+                    element.style.width='';
+
+                    console.log("les enfants de chaque element----",element.children);
+
+                    const children=element.children;
+
+
+
+                    console.log('le premier fils',children[0]);
+
+                    // children[0].style.width="380px";
+
+                    children[0].children[0].classList.remove('rounded_l-xl');
+                    
+                    children[0].children[0].classList.add('rounded-xl');
+
+                    
+                    children[1].classList.remove("flex","flex-col","justify-center");
+
+                    
+                }
+            }
+
+            
+        })
+    }
+
+
+    // Mobile Icon 
+
+    const mobileMenuButton= document.getElementById("mobile-menu-button");
+    
+    if(mobileMenuButton){
+        mobileMenuButton.addEventListener('click',()=>{
+
+            const collapseMenu= document.getElementById('mobile-menu');
+
+            collapseMenu.classList.toggle('hidden');
+
+            console.log("Les classLists--- ",collapseMenu);
+
+            if(collapseMenu.classList.contains('hidden')){
+                console.log('La croix');
+
+                document.getElementById('menu-close').classList.remove("hidden");
+
+                document.getElementById('menu-close').classList.add("block");
+
+
+                document.getElementById("menu-open").classList.remove('block')
+
+                document.getElementById("menu-open").classList.add('hidden');
+            }else{
+                console.log('Le menu');
+
+                document.getElementById('menu-close').classList.add("hidden");
+
+
+                document.getElementById("menu-open").classList.remove('hidden')
+
+                document.getElementById("menu-open").classList.add('block');
+            }
+            
         });
-        maxRange?.addEventListener('input', () => {
-            console.log("max");
-            maxPrice.textContent = `${maxRange.value} FCFA`;
+    }
+
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', () => {
+            alert("Merci pour votre abonnement !");
         });
-      
+    });
 
         
-        // Logique de la page house
 
-        //Selection du grid vertical
-
-        const vertical= document.getElementById('layoult-vertical');
-
-        if(vertical){
-
-            vertical.addEventListener('click',()=>{
-
-                console.log("----------VERTICAL-------");
-
-                document.getElementById('layoult-horizontal')?.classList.remove('text-amber-500');
-            
-                vertical.classList.add('text-amber-500');
-
-                document.getElementById('final-container-houses')?.classList.add('flex-col');
-
-                let items= document.getElementsByClassName('items-house');
-
-                if(items.length >0){
-                    for (let index = 0; index < items.length; index++) {
-                        const element = items[index];
-
-                        element.classList.add("flex", "bg-white", "rounded-xl", "gap-6");
-
-                        element.style.width="100%";
-
-                        console.log("les enfants de chaque element----",element.children);
-
-                        const children=element.children;
-
-                        // console.log('le premier fils',children[0]);
-
-                        // children[0].style.width="420px";
-
-                        children[0].children[0].classList.remove('rounded-xl');
-                        
-                        children[0].children[0].classList.add('rounded-l-xl');
-
-                        
-                        children[1].classList.add("flex","flex-col","justify-center");
-
-
-
-
-                        
-                    }
-                }
-            })
-        }
-
-        //Selection du grid horizental
-
-        const horizontal= document.getElementById('layoult-horizontal');
-
-        if(horizontal){
-
-            horizontal.addEventListener('click',()=>{
-
-                console.log("----------Horizental-------");
-
-                document.getElementById('layoult-vertical')?.classList.remove('text-amber-500');
-            
-                horizontal.classList.add('text-amber-500');
-
-                document.getElementById('final-container-houses')?.classList.remove('flex-col');
-
-                let items= document.getElementsByClassName('items-house');
-
-
-                if(items.length >0){
-                    for (let index = 0; index < items.length; index++) {
-                        const element = items[index];
-
-                        element.classList.remove("flex", "bg-white", "rounded-xl", "gap-6");
-
-                        element.style.width='';
-
-                        console.log("les enfants de chaque element----",element.children);
-
-                        const children=element.children;
-
-
-
-                        console.log('le premier fils',children[0]);
-
-                        // children[0].style.width="380px";
-
-                        children[0].children[0].classList.remove('rounded_l-xl');
-                        
-                        children[0].children[0].classList.add('rounded-xl');
-
-                        
-                        children[1].classList.remove("flex","flex-col","justify-center");
-
-                        
-                    }
-                }
-
-                
-            })
-        }
-
-
-        // Mobile Icon 
-
-       const mobileMenuButton= document.getElementById("mobile-menu-button");
-       
-        if(mobileMenuButton){
-            mobileMenuButton.addEventListener('click',()=>{
-
-                const collapseMenu= document.getElementById('mobile-menu');
-
-                collapseMenu.classList.toggle('hidden');
-
-                console.log("Les classLists--- ",collapseMenu);
-
-                if(collapseMenu.classList.contains('hidden')){
-                    console.log('La croix');
-
-                    document.getElementById('menu-close').classList.remove("hidden");
-
-                    document.getElementById('menu-close').classList.add("block");
-
-
-                    document.getElementById("menu-open").classList.remove('block')
-
-                    document.getElementById("menu-open").classList.add('hidden');
-                }else{
-                    console.log('Le menu');
-
-                    document.getElementById('menu-close').classList.add("hidden");
-
-
-                    document.getElementById("menu-open").classList.remove('hidden')
-
-                    document.getElementById("menu-open").classList.add('block');
-                }
-                
-            });
-        }
-
-        
-
-        console.log('le suiper',swiper);
+    // console.log('le suiper',swiper);
 
 });
   
