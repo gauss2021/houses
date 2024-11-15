@@ -1,7 +1,7 @@
 <x-layoult>
-    <div style="height: 120vh;background:url({{ Vite::asset('resources/images/register-image.jpg') }});background-repeat: no-repeat;background-size:cover;">
-        <div class="h-full bg-black/30 pt-10 pb-8 flex gap-3 px-20" >
-            <div class="h-full w-1/2 bg-white rounded-xl p-10">
+    <div class="">
+        <div class="h-full flex ps-8 pe-8 lg:pe-0 py-10 sm:py-16 sm:ps-10 xl:ps-20" >
+            <div class="h-full w-full lg:w-1/2 bg-white rounded-xl md:p-5 xl:p-10">
                 <h2 class="text-3xl text-center font-semibold text-amber-500">S'enregister</h2>
                 <p class="mt-3 text-center">Creez votre compte afin de profiter de nos services</p>
                 <form action="" method="post" class="mt-3">
@@ -35,8 +35,8 @@
                     </div>
                 </form>
             </div>
-            <div>
-
+            <div class="lg:w-1/2" style="background:url({{ Vite::asset('resources/images/register-gars.jpg') }});background-repeat: no-repeat;background-size:cover;">
+                
             </div>
         </div>
     </div>
