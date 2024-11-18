@@ -343,11 +343,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    document.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', () => {
-            alert("Merci pour votre abonnement !");
-        });
-    });
+    // document.querySelectorAll('button').forEach(button => {
+    //     button.addEventListener('click', () => {
+    //         alert("Merci pour votre abonnement !");
+    //     });
+    // });
 
         
 

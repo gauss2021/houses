@@ -1,10 +1,9 @@
 <?php
 
+use App\Models\Owner;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-use App\Models\User;
 
 return new class extends Migration
 {
@@ -13,10 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('owners', function (Blueprint $table) {
+        Schema::create('houses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(User::class);
-            $table->string("name")->require();
+            $table->foreignId(Owner::class);
+            $table->string('title')->require();
+            $table->text("description")->require();
+            $table->string("price")->require();
+            $table->integer("nbre_quotient")->require();
+            $table->string('image')->require();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('owners');
+        Schema::dropIfExists('houses');
     }
 };

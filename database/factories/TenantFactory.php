@@ -4,12 +4,10 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\User;
-
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Owner>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tenant>
  */
-class OwnerFactory extends Factory
+class TenantFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,8 +18,6 @@ class OwnerFactory extends Factory
     {
         return [
             //
-            "name"=>fake()->name,
-            "user_id"=>User::factory(),
         ];
     }
 }
