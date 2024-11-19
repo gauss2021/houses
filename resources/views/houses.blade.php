@@ -52,43 +52,15 @@
             </div>
         </div>
         <div id="final-container-houses" class="flex flex-wrap mt-6 sm:justify-between gap-y-10">
-    
-            <x-items-house></x-items-house>
 
-            <x-items-house></x-items-house>
-
-            <x-items-house></x-items-house>
-
-            <x-items-house></x-items-house>
-
-            <x-items-house></x-items-house>
-
-            <x-items-house></x-items-house>
-
-            <x-items-house></x-items-house>
-
-            <x-items-house></x-items-house>
-            
-            <x-items-house></x-items-house>
-            
+            @foreach ($houses as $house)
+                <x-items-house :house="$house"></x-items-house>
+            @endforeach
         </div>
-        <div class="flex mt-12 gap-4 justify-center">
-              <span class="flex items-center justify-center px-4 py-2 border rounded-md cursor-pointer bg-amber-500 text-white">
-                    1
-              </span>
-              <span class="flex items-center justify-center px-4 py-2 border rounded-md bg-white cursor-pointer hover:text-white hover:bg-amber-500">
-                2
-              </span>
-              <span class="flex items-center justify-center px-4 py-2 border rounded-md bg-white cursor-pointer hover:text-white hover:bg-amber-500">
-                3
-              </span>
-              <span class="flex items-center justify-center px-4 py-2 border rounded-md bg-white cursor-pointer hover:text-white hover:bg-amber-500">
-                4
-              </span>
-                <span class="flex items-center justify-center px-4 py-2 border rounded-md bg-white cursor-pointer hover:text-white hover:bg-amber-500">
-                5
-                </span>
+        <div class="mt-12 sm:flex justify-center">
+            {{ $houses->links() }}
         </div>
+        
     </section>
     <section id="conseil" class="py-10 px-8 sm:py-20 sm:px-16">
         <div class="w-full flex justify-center sm:justify-between">

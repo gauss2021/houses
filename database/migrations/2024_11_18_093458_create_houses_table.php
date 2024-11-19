@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(Owner::class);
+            $table->foreignId("owner_id");
             $table->string('title')->require();
             $table->text("description")->require();
             $table->string("price")->require();

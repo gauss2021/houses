@@ -21,7 +21,7 @@ class HouseFactory extends Factory
             //
             "title"=>fake()->title,
             "description"=>fake()->text(200),
-            "image"=>fake()->imageUrl(),
+            "image"=>fake()->imageUrl(category:"animals"),
             "price"=>fake()->randomElement(["30000 FCFA","100000 FCFA","25000 FCFA","40000 FCFA"]),
             "nbre_quotient"=>rand(2,5),
             "owner_id"=>Owner::factory(),

@@ -76,15 +76,14 @@
     <h2 class="font-bold md:text-xl lg:text-2xl" style="font-family: poppins">Decouvrez les recentes maisons misent en location</h2>
     <p class="mt-3 font-serif">Toutes les maisons sont pres de chez vous</p>
     <div class="flex flex-wrap mt-6 sm:justify-between gap-y-10">
-      <x-house :id='1'></x-house>
-      <x-house :id='2'></x-house>
-      <x-house :id='3'></x-house>
-      <x-house :id='4'></x-house>
-      <x-house :id='5'></x-house>
-      <x-house :id='6'></x-house> 
+      @foreach ($houses as $house)
+        <x-house :id='$house->id' :price="$house->price" :title="$house->title" :image="$house->image"></x-house>
+      @endforeach
+      
+     
     </div>
-    <div class="flex mt-6 justify-center">
-          <a href="#" class="underline font-medium">En voir plus</a>
+    <div class="flex mt-8 justify-center">
+          <a href="/maisons" class="underline font-medium hover:text-amber-500">En voir plus</a>
     </div>
   </section>
   <section id="avantages-plateforme" class="py-10 px-8 sm:py-20 sm:px-16">
