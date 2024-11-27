@@ -10,6 +10,11 @@ class Tenant extends Model
     /** @use HasFactory<\Database\Factories\TenantFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        "user_id"
+    ];
+
     public function user(){
 
         return $this->belongsTo(User::class);

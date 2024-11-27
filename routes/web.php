@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 // https://preview.themeforest.net/item/qiupid-wordpress-dating-theme/full_screen_preview/43264057?_ga=2.190846190.571435626.1731914852-1656982860.1731914852&_gac=1.258067192.1731914852.CjwKCAiAxea5BhBeEiwAh4t5K6qRNBn8XPqRsDN0tFC1PggwGqjcjIj2B_Skft1g6EtKqNg44qohRxoCh4UQAvD_BwE
 
 Route::get('/', function () {
-    $houses=House::with("owner")->paginate(6);
+    $houses=House::with("owner")->latest()->paginate(6);
     return view('accueil',[
         "houses"=>$houses,
     ]);
@@ -37,7 +37,7 @@ Route::post('/inscription',[Register::class,'store']);
 
 Route::get('/connexion',[LoginController::class,"create"]);
 Route::post('/connexion',[LoginController::class,"store"]);
-Route::get('/deconnexion',[LoginController::class,"destroy"]);
+Route::post('/deconnexion',[LoginController::class,"destroy"]);
 
 
 

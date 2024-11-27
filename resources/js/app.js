@@ -353,6 +353,84 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // console.log('le suiper',swiper);
 
+    // Gerer l'oeil sur mes inputs de type password
+
+    const show= document.getElementById('show');
+
+    if(show){
+
+        show.addEventListener('click',()=>{
+            console.log('Le click sur loeil');
+
+            const password= document.querySelector("input[name='password']");
+
+            show.classList.toggle('desactive');
+
+            if(show.classList.contains('desactive')){
+
+                if(password){
+                    password.type='text';
+                    show.classList.remove('bx-show');
+                    show.classList.add('bx-hide');
+                }
+            }else{
+
+                if(password){
+                    password.type='password';
+                    show.classList.remove('bx-hide');
+                    show.classList.add('bx-show');
+                }
+            }
+
+            
+        })
+    }
+
+    const showConfirmation= document.getElementById('show_confirmation');
+
+    if(showConfirmation){
+
+        showConfirmation.addEventListener('click',()=>{
+
+            const passwordConfirmation= document.querySelector("input[name='password_confirmation']");
+
+            showConfirmation.classList.toggle('desactive');
+
+            if(showConfirmation.classList.contains('desactive')){
+
+                if(passwordConfirmation){
+                    passwordConfirmation.type='text';
+                    showConfirmation.classList.remove('bx-show');
+                    showConfirmation.classList.add('bx-hide');
+                }
+            }else{
+
+                if(passwordConfirmation){
+                    passwordConfirmation.type='password';
+                    showConfirmation.classList.remove('bx-hide');
+                    showConfirmation.classList.add('bx-show');
+                }
+            }
+
+            
+        })
+    }
+
+    // Gerer le sous menu absolute qui contient les liens profil et deconnexion du current user
+
+    const userMenuButton= document.getElementById('user-menu-button');
+
+    if(userMenuButton){
+
+        userMenuButton.addEventListener('click',()=>{
+           const absoluteSubMenu = document.getElementById('absolute-submenu');
+
+           if(absoluteSubMenu){
+                absoluteSubMenu.classList.toggle('hidden');
+           }
+        })
+    }
+
 });
   
   
