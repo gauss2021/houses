@@ -65,5 +65,20 @@ Route::get('/ajouter/maison',function(){
 
 Route::post('/ajouter/maison',function(){
 
+    dd(request()->all());
+
+    request()->validate(
+        [
+            "title"=> ['required'],
+            "price"=>['required'],
+            "quotient"=>['required'],
+            "description"=>['required'],
+            "rules"=>['required'],
+            "images"=> ["required"]
+        ]
+    );
+
+
+
     dd("On soumet le formulaire");
 });

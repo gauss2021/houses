@@ -17,9 +17,10 @@ return new class extends Migration
             $table->foreignId("owner_id");
             $table->string('title')->require();
             $table->text("description")->require();
+            $table->text("rules")->require();
             $table->string("price")->require();
-            $table->integer("nbre_quotient")->require();
-            $table->string('image')->require();
+            $table->integer("quotient")->require();
+            $table->string('images')->require();
             $table->timestamps();
         });
     }

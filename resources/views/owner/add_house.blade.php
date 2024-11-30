@@ -17,30 +17,30 @@
                 </div>
                 <div class="mt-4 flex gap-3">
                     <div class="w-1/2 flex flex-col space-y-2">
-                        <label for="title" class="font-bold">Prix par mois (<span class="text-red-500">*</span>)</label>
-                        <input type="number" name="title" class="px-4 py-2 rounded-md" placeholder="Entrer le prix par mois" required>
+                        <label for="price" class="font-bold">Prix par mois (<span class="text-red-500">*</span>)</label>
+                        <input type="number" name="price" class="px-4 py-2 rounded-md" placeholder="Entrer le prix par mois" required>
                     </div>
                     <div class="w-1/2 flex flex-col space-y-2">
-                        <label for="title" class="font-bold">Nombre de quotient (<span class="text-red-500">*</span>)</label>
-                        <input type="number" name="title" class="px-4 py-2 rounded-md" placeholder="Entrer le nombre de quotient" required>
+                        <label for="quotient" class="font-bold">Nombre de quotient (<span class="text-red-500">*</span>)</label>
+                        <input type="number" name="quotient" class="px-4 py-2 rounded-md" placeholder="Entrer le nombre de quotient" required>
                     </div>
                 </div>
                 <div class="mt-4">
                     <div class="space-y-2">
                         <label for="description" class="font-bold">Description de la maison (<span class="text-red-500">*</span>)</label>
-                        <textarea name="description" id="" rows="5" class="w-full px-4 py-2" style="resize: none" placeholder="Entrer une description de votre maison"></textarea>
+                        <textarea name="description" rows="5" class="w-full px-4 py-2" style="resize: none" placeholder="Entrer une description de votre maison"></textarea>
                     </div>
                 </div>
                 <div class="mt-4">
                     <div class="space-y-2">
-                        <label for="description" class="font-bold">Vos regles (<span class="text-red-500">*</span>)</label>
-                        <textarea name="description" id="" rows="5" class="w-full px-4 py-2" style="resize: none" placeholder="Entrer vos regles pour votre maison"></textarea>
+                        <label for="rules" class="font-bold">Vos regles (<span class="text-red-500">*</span>)</label>
+                        <textarea name="rules" rows="5" class="w-full px-4 py-2" style="resize: none" placeholder="Entrer vos regles pour votre maison"></textarea>
                     </div>
                 </div>
                 <div class="mt-4">
                     <div class="w-full flex flex-col space-y-2">
-                        <label for="title" class="font-bold">Images (<span class="text-red-500">*</span>)</label>
-                        <input type="file" multiple  placeholder="Choississez des images de la maison" required>
+                        <label for="images" class="font-bold">Images (<span class="text-red-500">*</span>)</label>
+                        <input type="file" multiple  placeholder="Choississez des images de la maison" name="images" required >
                     </div>
                     
                 </div>
