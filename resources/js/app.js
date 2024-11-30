@@ -305,7 +305,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Mobile Icon 
+    // Mobile Icon de la partie cliente
 
     const mobileMenuButton= document.getElementById("mobile-menu-button");
     
@@ -428,6 +428,58 @@ document.addEventListener("DOMContentLoaded", function () {
            if(absoluteSubMenu){
                 absoluteSubMenu.classList.toggle('hidden');
            }
+        })
+    }
+
+
+    // MOBILE ICON DE LA PARTIE DASHBOARD
+
+
+    const dashboardMenu= document.getElementById('dashbord-menu');
+    const  dashboardCroix= document.getElementById('dashboard-croix');
+
+    if(dashboardMenu){
+        dashboardMenu.addEventListener('click',()=>{
+
+            console.log('----------On a cliqué sur le menu------------');
+
+            const sideBar= document.getElementById("sidebar-mobile");
+
+            sideBar.classList.toggle('-translate-x-full');
+
+            sideBar.classList.toggle('translate-x-0');
+
+
+
+            const mainContent= document.getElementById('main-content');
+            if(mainContent){
+                mainContent.classList.toggle('overlay');
+            }
+
+
+        })
+    }
+
+    if(dashboardCroix){
+        dashboardCroix.addEventListener('click',()=>{
+
+            console.log('----------On a cliqué sur le menu------------');
+
+            const sideBar= document.getElementById("sidebar-mobile");
+
+            sideBar.classList.toggle('-translate-x-full');
+
+            sideBar.classList.toggle('translate-x-0');
+
+
+
+            const mainContent= document.getElementById('main-content');
+            if(mainContent){
+                mainContent.classList.toggle('overlay');
+            }
+            
+
+
         })
     }
 

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\Register;
 use App\Models\House;
 use Illuminate\Support\Facades\Route;
@@ -39,12 +41,29 @@ Route::get('/connexion',[LoginController::class,"create"]);
 Route::post('/connexion',[LoginController::class,"store"]);
 Route::post('/deconnexion',[LoginController::class,"destroy"]);
 
-
-
-
-
-Route::get('/abonnement/',function(){
+Route::get('/abonnement',function(){
 
     return view("abonnement");
 
+});
+
+
+Route::get('/admin/dashboard',function(){
+
+    return view("admin.index");
+});
+
+Route::get('/proprietaire/dashboard',function (){
+
+    return view('owner.index');
+});
+
+Route::get('/ajouter/maison',function(){
+   
+    return view('owner.add_house');
+});
+
+Route::post('/ajouter/maison',function(){
+
+    dd("On soumet le formulaire");
 });

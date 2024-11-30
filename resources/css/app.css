@@ -67,6 +67,9 @@ margin-right: auto;
     margin-left: 1.5rem !important;
 }
 
+.overlay{
+    background-color:#000000A6 !important;
+}
 
 
 @media (min-width:640px) {
