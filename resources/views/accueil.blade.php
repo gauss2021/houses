@@ -72,6 +72,7 @@
   
   </section>
 
+  @if (count($houses) >0 )
   <section id="recentes-maisons" class="bg-[#EDF3FD] py-10 px-8 sm:py-20 sm:px-16">
     <h2 class="font-bold md:text-xl lg:text-2xl" style="font-family: poppins">Decouvrez les recentes maisons misent en location</h2>
     <p class="mt-3 font-serif">Toutes les maisons sont pres de chez vous</p>
@@ -86,6 +87,9 @@
           <a href="/maisons" class="underline font-medium hover:text-amber-500">En voir plus</a>
     </div>
   </section>
+  @endif
+
+  
   <section id="avantages-plateforme" class="py-10 px-8 sm:py-20 sm:px-16">
     <h2 class="font-bold text-xl sm:text-2xl text-center sm:text-left" style="font-family: poppins">Pourquoi choisir <span class="text-amber-500">NDAKO</span> ?</h2>
     <p class="mt-3 font-serif">Toutes les maisons sont pres de chez vous</p>

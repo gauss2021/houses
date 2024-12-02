@@ -43,9 +43,11 @@
             </div>
         </form>
     </section>
+
+    @if (count($houses) >0 )
     <section id="all-maison" class="bg-[#EDF3FD] py-10 px-8 sm:py-20 sm:px-16" >
         <div class="flex justify-between">
-            <p class="font-medium text-xl">76 maisons</p>
+            <p class="font-medium text-xl">{{ count($houses) > 1 ?' maisons':' maison' }} </p>
             <div class="flex gap-4 hidden sm:block">
                 <i class='bx bxs-grid-alt text-amber-500 cursor-pointer hover:text-amber-500' style="font-size: 24px" id="layoult-horizontal"></i>
                 <i class='bx bx-spreadsheet hover:text-amber-500 cursor-pointer' style="font-size: 24px" id="layoult-vertical"></i>
@@ -62,6 +64,15 @@
         </div>
         
     </section>
+    @else 
+     <section class="bg-[#EDF3FD] py-10 px-8 sm:py-20 sm:px-16">
+
+        <h2 class="text-xl font-bold text-red-500 text-center">Aucune maison disponible pour l'instant</h2>
+
+     </section>
+    @endif
+
+    
     <section id="conseil" class="py-10 px-8 sm:py-20 sm:px-16">
         <div class="w-full flex justify-center sm:justify-between">
             <div class="w-[100%] sm:w-[49%]">

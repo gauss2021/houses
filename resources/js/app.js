@@ -11,6 +11,15 @@ import { Navigation,} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Toastify from 'toastify-js';
+import "toastify-js/src/toastify.css";
+
+window.Toastify = Toastify;
+
+
+
+
+
 
 
 
@@ -30,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         modules: [Navigation],
     });
+
+    window.Toastify = Toastify;
 
     const items = document.querySelectorAll('.carousel-item');
     let currentItem = 0;
@@ -482,6 +493,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         })
     }
+
+    // Configuration des messages d'erreur
+
+    // Toastify({
+    //     text: "Votre maison a bien été ajoutée",
+    //     duration: 3000,
+    //     className: "success",
+    //     // destination: "https://github.com/apvarun/toastify-js",
+    //     // newWindow: true,
+    //     // close: true,
+    //     gravity: "top", // `top` or `bottom`
+    //     position: "right", // `left`, `center` or `right`
+    //     stopOnFocus: true, // Prevents dismissing of toast on hover
+    //     style: {
+    //       background: "linear-gradient(to right, #00b09b, #96c93d)",
+    //     },
+    //     // onClick: function(){} // Callback after click
+    // }).showToast();
 
 });
   

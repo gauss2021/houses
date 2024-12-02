@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Owner;
 use App\Models\Tenant;
+use Illuminate\Support\Facades\DB;
 
 class Register extends Controller
 {
@@ -21,18 +22,17 @@ class Register extends Controller
 
     public function store(){
 
-
-        // dd(request()->all());
-
+        DB::beginTransaction();
 
        
+            //code...
         request()->validate(
             ["complete_name"=>['required', 'min:4'],
             "tel"=>['required'],
             "password"=>['required','confirmed'],
             ]
         );
-
+    
         $all= request()->all();
 
         if(!array_key_exists("allow",$all) || $all["allow"]!='on'){
@@ -40,80 +40,66 @@ class Register extends Controller
             throw ValidationException::withMessages([
                 "allow"=>"Vous devez accepter les conditions d'utilisation"
             ]);
+
+            DB::rollBack();
             
         }
+    
+            //Verification de l'unicité du numero de telephone
+    
+            $existUser= User::find(['tel'=>request('tel')]);
+    
+            if($existUser->count() >0){
+                throw ValidationException::withMessages([
+                    "tel"=>"Ce numero de téléphone existe déja"
+                ]);
 
-        //Verification de l'unicité du numero de telephone
-
-        $existUser= User::find(['tel'=>request('tel')]);
-
-        if($existUser){
-            throw ValidationException::withMessages([
-                "tel"=>"Ce numero de téléphone existe déja"
-            ]);
-        }
-
-        // dd($all);
-
-        $user= User::create(
-            [
-                'tel'=>request('tel'),
-                'password'=>request('password'),
-                'role'=> array_key_exists('owner',$all) && $all['owner']=='on' ? 'owner':'tenant',
-                "image"=>"https://via.placeholder.com/640x480.png/00ffbb?text=earum",
-            ]
-            );
-
-        if(array_key_exists('owner',$all) && $all['owner']=='on'){
-
-            // L'utilisateur est un propriétaire
-
-            Owner::create(
+                DB::rollBack();
+            }
+    
+            // dd($all);
+    
+            $user= User::create(
                 [
-                    'name'=>request('complete_name'),
-                    'user_id'=>$user->id,
-                ]
-            ) ;
-
-
-        }else{
-            // L'utilisateur est un locataire
-
-            Tenant::create(
-                [
-                    'name'=>request('complete_name'),
-                    'user_id'=>$user->id
+                    'tel'=>request('tel'),
+                    'password'=>request('password'),
+                    'role'=> array_key_exists('owner',$all) && $all['owner']=='on' ? 'owner':'tenant',
+                    "image"=>"https://via.placeholder.com/640x480.png/00ffbb?text=earum",
                 ]
             );
-        }
+    
+            if(array_key_exists('owner',$all) && $all['owner']=='on'){
+    
+                // L'utilisateur est un propriétaire
+    
+                Owner::create(
+                    [
+                        'name'=>request('complete_name'),
+                        'user_id'=>$user->id,
+                    ]
+                ) ;
+    
+    
+            }else{
+                // L'utilisateur est un locataire
+    
+                Tenant::create(
+                    [
+                        'name'=>request('complete_name'),
+                        'user_id'=>$user->id
+                    ]
+                );
+            }
 
+
+            Auth::login($user);
+
+            DB::commit();
+            return redirect('/');
+    
         
 
-        Auth::login($user);
-
-
-        return redirect('/');
-
-
-
-       
-
-       
-
-        // dd($allow);
-
-        // if($allow!=='on'){
         
-        //     $allow="Vous devez accepter les conditions d'utilisation";
-        //     dd($allow);
-        // // return redirect('inscription',[
-        // //    "allow"=>$allow 
-        // // ]) ;
-        // }
-        
-        // $owner= request('owner')
-                
-        // dd(request()->all());
        
        
     }

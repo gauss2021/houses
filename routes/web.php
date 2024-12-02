@@ -5,7 +5,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\Register;
 use App\Models\House;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rules\File;
 
 // https://ultra.realhomes.io/vacation-rentals/
 // dating app
@@ -55,7 +57,11 @@ Route::get('/admin/dashboard',function(){
 
 Route::get('/proprietaire/dashboard',function (){
 
-    return view('owner.index');
+    $houses = House::where('owner_id', 1)->get();
+
+    return view('owner.index',[
+        'houses'=>$houses
+    ]);
 });
 
 Route::get('/ajouter/maison',function(){
@@ -65,20 +71,78 @@ Route::get('/ajouter/maison',function(){
 
 Route::post('/ajouter/maison',function(){
 
-    dd(request()->all());
+    // dd(request()->all());
+    
 
-    request()->validate(
-        [
-            "title"=> ['required'],
-            "price"=>['required'],
-            "quotient"=>['required'],
-            "description"=>['required'],
-            "rules"=>['required'],
-            "images"=> ["required"]
-        ]
-    );
+    try {
+        //code...
+        request()->validate(
+            [
+                "title"=> ['required'],
+                "price"=>['required'],
+                "quotient"=>['required'],
+                "description"=>['required'],
+                "rules"=>['required'],
+                'images.*' => ['required',File::types(['jpg,png,jpeg'])],
+            ]
+        );
+    
+        //    $imagePath= request()->images->store('images');
+    
+        $imagePaths = [];
+
+        
+    
+    
+         // Parcourir et stocker chaque chemin d'image
+        foreach (request()->file('images') as $file) {
+           $path=$file->store('uploads/houses','public');
+           $imagePaths[] = $path;
+    
+        }
+    
+        // Joindre les chemins par un point-virgule
+        $imagesString = implode(';', $imagePaths);
+    
+        House::create(
+            [
+                'title'=> request('title'),
+                'description'=>request('description'),
+                'rules'=>request('rules'),
+                'price'=>request('price'),
+                'quotient'=>request('quotient'),
+                'images'=>$imagesString,
+                'owner_id'=>1,
+            ]
+        );
+    
+        session()->flash('success', 'Votre Maison a été ajouté avec succès!');
+    
+        return redirect('/proprietaire/dashboard');
+    } catch (\Throwable $th) {
+        //throw $th;
+        dd($th);
+        
+        
+        return back();
+    }
+
+    
+
+});
+
+Route::get('/detail/{house}',function(House $house){
 
 
+    return view('owner.show-detail',[
+        'house'=>$house
+    ]);
 
-    dd("On soumet le formulaire");
+});
+
+Route::get('/modifier/detail/maison/{house}',function(House $house){
+
+    return view('owner.edit-detail-house',[
+        'house'=>$house
+    ]);
 });
