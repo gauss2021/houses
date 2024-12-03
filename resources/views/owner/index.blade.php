@@ -62,9 +62,12 @@
                                     <i class="bx bx-edit mr-2"></i> Modifier
                                 </a>
                                 <!-- Supprimer -->
-                                <button class="px-4 py-2 bg-red-500 text-white text-sm font-semibold rounded-md hover:bg-red-400 flex items-center">
+                                <button type="submit" form="delete-house" class="px-4 py-2 bg-red-500 text-white text-sm font-semibold rounded-md hover:bg-red-400 flex items-center">
                                     <i class="bx bx-trash mr-2"></i> Supprimer
                                 </button>
+                                <form action="/supprimer/maison/{{ $house->id }}" method="post" class="hidden" id="delete-house">
+                                    @csrf
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -83,7 +86,10 @@
 
     </div>
     @else
-        <p class="text-center text-red-500">Vous avez aucune maison en location pour le moment</p>
+    <div class="py-20">
+        <p class="text-center text-red-500 text-xl font-bold">Vous avez aucune maison en location pour le moment</p>
+    </div>
+       
     @endif
 
     

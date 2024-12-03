@@ -5,15 +5,16 @@
             <h4 class="text-red-500">NB : Tous les champs avec des * sont obligatoires</h4>
        </div>
         <div class="py-4">
-            <form action="/modifier/detail/maison" method="Post" class="bg-gray-100 py-6 px-6 rounded-md" enctype='multipart/form-data'>
+            <form action="/modifier/detail/maison/{{ $house->id }}" method="Post" class="bg-gray-100 py-6 px-6 rounded-md" enctype='multipart/form-data'>
                 @csrf 
 
                 <div class="flex gap-4">
                     <div class="w-full flex flex-col space-y-2">
                         <label for="title" class="font-bold">Titre (<span class="text-red-500">*</span>)</label>
-                        <input type="text" name="title" class="px-4 py-2 rounded-md" placeholder="Entrer un titre pour votre maison" value={{ $house->title }} required>
+                        <input type="text" value="{{ $house->title }}" name="title" class="px-4 py-2 rounded-md" placeholder="Entrer un titre pour votre maison"  required>
                         @error('title')
                             <p class="mt-2 text-red-500 font-semibold">{{ $message }}</p> 
+                            
                         @enderror
                     </div>
                     

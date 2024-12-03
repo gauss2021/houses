@@ -11,7 +11,7 @@
         </div>
         <div class="mt-4 flex gap-4">
             @foreach ($images as $image)
-                <img  src="{{ 'http://localhost:8000/storage/'.$images[0]  }}" alt="Image de la maison" class="w-16 h-16 rounded-md object-cover cursor-pointer">
+                <img  src="{{ 'http://localhost:8000/storage/'.$image  }}" alt="Image de la maison" class="w-16 h-16 rounded-md object-cover cursor-pointer">
             @endforeach
             
         </div>

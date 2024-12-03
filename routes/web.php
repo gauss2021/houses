@@ -8,6 +8,7 @@ use App\Models\House;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Storage;
 
 // https://ultra.realhomes.io/vacation-rentals/
 // dating app
@@ -145,4 +146,113 @@ Route::get('/modifier/detail/maison/{house}',function(House $house){
     return view('owner.edit-detail-house',[
         'house'=>$house
     ]);
+});
+
+Route::post('/modifier/detail/maison/{house}',function(House $house){
+
+    // dd(request()->all());
+
+    try {
+        //code...
+        request()->validate(
+            [
+                "title"=> ['required'],
+                "price"=>['required'],
+                "quotient"=>['required'],
+                "description"=>['required'],
+                "rules"=>['required'],
+                'images.*' => ['required',File::types(['jpg,png,jpeg'])],
+            ]
+        );
+
+
+        //Detruire toutes les images associés à cette maison avant
+
+        // dd($house);
+
+        $images = explode(';', $house->images);
+
+         // Supprimer chaque image
+        foreach ($images as $image) {
+            if (Storage::exists($image)) {
+                Storage::delete($image);
+            }
+        }
+    
+        //    $imagePath= request()->images->store('images');
+    
+        
+
+        
+    // A Patir d'ici on commence la logique pour la modification
+
+        $imagePaths = [];
+    
+         // Parcourir et stocker chaque chemin d'image
+        foreach (request()->file('images') as $file) {
+           $path=$file->store('uploads/houses','public');
+           $imagePaths[] = $path;
+    
+        }
+    
+        // Joindre les chemins par un point-virgule
+        $imagesString = implode(';', $imagePaths);
+
+        $house->title= request('title');
+
+        $house->description= request('description');
+
+        $house->rules= request('rules');
+
+        $house->price= request('price');
+
+        $house->quotient= request('quotient');
+
+        $house->images= $imagesString;
+
+        $house->rules=  request('rules');
+
+        $house->save();
+    
+        session()->flash('success', 'Modification reussie');
+    
+        return redirect('/proprietaire/dashboard');
+    } catch (\Throwable $th) {
+        //throw $th;
+        dd($th);
+        
+        
+        
+    }
+});
+
+Route::post('/supprimer/maison/{house}',function(House $house){
+
+    $images = explode(';', $house->images);
+
+    // Supprimer chaque image
+    foreach ($images as $image) {
+        if (Storage::exists($image)) {
+            Storage::delete($image);
+        }
+    }
+
+    // Supprimer la maison
+    $house->delete();
+
+    session()->flash('success', 'Suppression effectué avec succes');
+
+    return redirect('/proprietaire/dashboard');
+
+});
+
+Route::get('/proprietaire/profile',function(){
+
+    $user= Auth::user();
+
+    return view('owner.profile',['user'=>$user]);
+});
+
+Route::post('/proprietaire/profile',function(){
+
 });
