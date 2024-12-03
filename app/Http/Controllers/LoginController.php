@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use Illuminate\Container\Attributes\CurrentUser;
 
 class LoginController extends Controller
 {
@@ -38,7 +39,20 @@ class LoginController extends Controller
         request()->session()->regenerate();
 
 
-        return redirect('/');
+        $currentUser= Auth::user();
+
+        if($currentUser->role==='admin'){
+
+            return redirect('/admin/dashboard');
+
+        }elseif($currentUser->role==='owner'){
+            return redirect('/proprietaire/dashboard');
+        }else{
+            return redirect('/');
+        }
+
+
+       
 
 
 

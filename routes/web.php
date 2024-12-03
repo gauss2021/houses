@@ -256,3 +256,5 @@ Route::get('/proprietaire/profile',function(){
 Route::post('/proprietaire/profile',function(){
 
 });
+
+Route::get('/admin/connexion',[AdminController::class,'login']);

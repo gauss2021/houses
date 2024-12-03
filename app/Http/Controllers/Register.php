@@ -94,12 +94,17 @@ class Register extends Controller
 
             Auth::login($user);
 
-            DB::commit();
-            return redirect('/');
-    
-        
+            $currentUser= Auth::user();
 
-        
+            if($currentUser->role==='owner'){
+
+                return redirect('/proprietaire/dashboard');
+
+            }else{
+                return redirect('/');
+            }
+
+            DB::commit();
        
        
     }

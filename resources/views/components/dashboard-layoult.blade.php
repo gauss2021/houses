@@ -26,18 +26,19 @@
     ],
     [ 
       'id'=>1,
-      'title'=>'Vos maisons',
+      'title'=>'Proprietaires',
       'url'=>'/proprietaire/dashboard',
       'icon'=>'bx bx-home-alt-2'
 
     ],
     [ 
       'id'=>2,
-      'title'=>'Vos maisons',
+      'title'=>'Locataires',
       'url'=>'/proprietaire/dashboard',
       'icon'=>'bx bx-home-alt-2'
 
     ]
+   
   ]
 ]])
 
@@ -72,29 +73,41 @@
                 <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=white" alt="Your Company">
               </div>
               <div class="mt-6 space-y-4">
-                @foreach ($role['owner'] as $item)
+                @auth
+                @foreach ($role[Auth::user()->role] as $item)
 
-                  @if ($item['id']==0)
-                    <div class="cursor-pointer border rounded-md py-2 px-2 bg-[#1a1a1d21] border-[#1a1a1d21]">
-                      <div class="flex items-center gap-x-2 text-white">
-                        <i class='{{ $item['icon'] }}' style='font-size:24px'></i>
-                        <a href="{{ $item['url'] }}" class="font-bold">{{ $item['title'] }}</a>
-                      </div>
-                    </div> 
-                  @else
-                    
-                    <div class="cursor-pointer rounded-md py-2 px-2 border border-transparent hover:border hover:bg-[#1a1a1d21] hover:border-[#1a1a1d21]">
-                      <div class="flex items-center gap-x-2 text-white">
-                        <i class='{{ $item['icon'] }}' style='font-size:24px'></i>
-                        <a href="{{ $item['url'] }}" class="font-bold">{{ $item['title'] }}</a>
-                      </div>
+                @if ($item['id']==0)
+                  <div class="cursor-pointer border rounded-md py-2 px-2 bg-[#1a1a1d21] border-[#1a1a1d21]">
+                    <div class="flex items-center gap-x-2 text-white">
+                      <i class='{{ $item['icon'] }}' style='font-size:24px'></i>
+                      <a href="{{ $item['url'] }}" class="font-bold">{{ $item['title'] }}</a>
                     </div>
+                  </div> 
+                @else
                   
-                  @endif
-                  
-                    
-                @endforeach
+                  <div class="cursor-pointer rounded-md py-2 px-2 border border-transparent hover:border hover:bg-[#1a1a1d21] hover:border-[#1a1a1d21]">
+                    <div class="flex items-center gap-x-2 text-white">
+                      <i class='{{ $item['icon'] }}' style='font-size:24px'></i>
+                      <a href="{{ $item['url'] }}" class="font-bold">{{ $item['title'] }}</a>
+                    </div>
+                  </div>
                 
+                @endif
+                
+                  
+              @endforeach
+                @endauth
+               
+                
+                <div class="cursor-pointer rounded-md py-2 px-2 border border-transparent hover:border hover:bg-[#1a1a1d21] hover:border-[#1a1a1d21]">
+                  <div class="flex items-center gap-x-2 text-white">
+                    <i class='bx bx-power-off' style='font-size:24px'></i>
+                    <button  id="log-out-mobile" class="font-bold">Se deconnecter</button>
+                    <form action="/deconnexion" method="post" class="hidden" id="log-out-mobile">
+                      @csrf
+                    </form>
+                  </div>
+                </div>
                 
               </div>
             </div>
@@ -110,29 +123,40 @@
               <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=white" alt="Your Company">
             </div>
             <div class="mt-6 space-y-4">
-              @foreach ($role['owner'] as $item)
+              @auth
+              @foreach ($role[Auth::user()->role] as $item)
 
-                @if ($item['id']==0)
-                  <div class="cursor-pointer border border-transparent rounded-md hover:border hover:bg-[#1a1a1d21] hover:border-[#1a1a1d21] py-2 px-2 {{ request()->is($item['url'])? 'bg-[#1a1a1d21] border-[#1a1a1d21]':'' }} ">
-                    <div class="flex items-center gap-x-2 text-white">
-                      <i class='{{ $item['icon'] }}' style='font-size:24px'></i>
-                      <a href="{{ '/'.$item['url'] }}" class="font-bold">{{ $item['title'] }}</a>
-                    </div>
-                  </div> 
-                @else
-                  
-                  <div class="cursor-pointer rounded-md py-2 px-2 border border-transparent hover:border hover:bg-[#1a1a1d21] hover:border-[#1a1a1d21] {{ request()->is($item['url'])? 'bg-[#1a1a1d21] border-[#1a1a1d21]':'' }} ">
-                    <div class="flex items-center gap-x-2 text-white">
-                      <i class='{{ $item['icon'] }}' style='font-size:24px'></i>
-                      <a href="{{ '/'.$item['url'] }}" class="font-bold">{{ $item['title'] }}</a>
-                    </div>
+              @if ($item['id']==0)
+                <div class="cursor-pointer border border-transparent rounded-md hover:border hover:bg-[#1a1a1d21] hover:border-[#1a1a1d21] py-2 px-2 {{ request()->is($item['url'])? 'bg-[#1a1a1d21] border-[#1a1a1d21]':'' }} ">
+                  <div class="flex items-center gap-x-2 text-white">
+                    <i class='{{ $item['icon'] }}' style='font-size:24px'></i>
+                    <a href="{{ '/'.$item['url'] }}" class="font-bold">{{ $item['title'] }}</a>
                   </div>
+                </div> 
+              @else
                 
-                @endif
-                
-                  
-              @endforeach
+                <div class="cursor-pointer rounded-md py-2 px-2 border border-transparent hover:border hover:bg-[#1a1a1d21] hover:border-[#1a1a1d21] {{ request()->is($item['url'])? 'bg-[#1a1a1d21] border-[#1a1a1d21]':'' }} ">
+                  <div class="flex items-center gap-x-2 text-white">
+                    <i class='{{ $item['icon'] }}' style='font-size:24px'></i>
+                    <a href="{{ '/'.$item['url'] }}" class="font-bold">{{ $item['title'] }}</a>
+                  </div>
+                </div>
               
+              @endif
+              
+                
+            @endforeach 
+              @endauth
+              
+              <div class="cursor-pointer rounded-md py-2 px-2 border border-transparent hover:border hover:bg-[#1a1a1d21] hover:border-[#1a1a1d21]">
+                <div class="flex items-center gap-x-2 text-white">
+                  <i class='bx bx-power-off' style='font-size:24px'></i>
+                  <button form="log-out" class="font-bold">Se deconnecter</button>
+                  <form action="/deconnexion" method="post" class="hidden" id="log-out">
+                    @csrf
+                  </form>
+                </div>
+              </div>
             </div>
             
           </div>

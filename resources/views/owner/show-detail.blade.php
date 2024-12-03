@@ -2,7 +2,7 @@
     <section class="py-5 px-6 bg-gray-100">
         <h2 class="text-bold text-center text-2xl">Details de la maison</h2>
         <div class="mt-4">
-                 @php
+                @php
                     $images = $house->images ? explode(';', $house->images) : [];
                 @endphp
                 @if (!empty($images) && isset($images[0]))

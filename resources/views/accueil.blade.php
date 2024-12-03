@@ -78,7 +78,10 @@
     <p class="mt-3 font-serif">Toutes les maisons sont pres de chez vous</p>
     <div class="flex flex-wrap mt-6 sm:justify-between gap-y-10">
       @foreach ($houses as $house)
-        <x-house :id='$house->id' :price="$house->price" :title="$house->title" :image="$house->image"></x-house>
+          @php
+          $images = $house->images ? explode(';', $house->images) : [];
+          @endphp
+        <x-house :id='$house->id' :price="$house->price" :title="$house->title" :image="$images[0]" :nbImage="count($images) "></x-house>
       @endforeach
       
      
