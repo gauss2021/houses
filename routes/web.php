@@ -258,3 +258,7 @@ Route::post('/proprietaire/profile',function(){
 });
 
 Route::get('/admin/connexion',[AdminController::class,'login']);
+
+Route::get('/admin/tags',[AdminController::class,'tag']);
+
+Route::post('/admin/tags',[AdminController::class,'create_tag']);

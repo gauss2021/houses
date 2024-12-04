@@ -22,18 +22,20 @@ class Register extends Controller
 
     public function store(){
 
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
-       
+        
             //code...
         request()->validate(
             ["complete_name"=>['required', 'min:4'],
-            "tel"=>['required'],
+            "tel"=>['required','min:9'],
             "password"=>['required','confirmed'],
             ]
         );
     
         $all= request()->all();
+
+        // dd($all);
 
         if(!array_key_exists("allow",$all) || $all["allow"]!='on'){
             
@@ -41,9 +43,11 @@ class Register extends Controller
                 "allow"=>"Vous devez accepter les conditions d'utilisation"
             ]);
 
-            DB::rollBack();
+            // DB::rollBack();
             
         }
+
+        // dd('On arrive ici');
     
             //Verification de l'unicité du numero de telephone
     
@@ -54,7 +58,7 @@ class Register extends Controller
                     "tel"=>"Ce numero de téléphone existe déja"
                 ]);
 
-                DB::rollBack();
+                // DB::rollBack();
             }
     
             // dd($all);
@@ -104,7 +108,7 @@ class Register extends Controller
                 return redirect('/');
             }
 
-            DB::commit();
+            // DB::commit();
        
        
     }

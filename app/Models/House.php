@@ -30,4 +30,8 @@ class House extends Model
 
         return $this->belongsTo(Owner::class);
     }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'house_tag');
+    }
 }

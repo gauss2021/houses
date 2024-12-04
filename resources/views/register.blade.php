@@ -49,8 +49,8 @@
                             <input type="checkbox" name="allow" id=""><h6 style="font-size: 14px" class="font-medium" required>Accepter les conditions d'utilisations</h6>
                         </div>
                         @error('allow')
-                        <p class="mt-2 text-red-500 font-semibold">{{ $message}}</p> 
-                        @enderror($allow)
+                            <p class="mt-2 text-red-500 font-semibold">{{ $message}}</p> 
+                        @enderror
                             
                     
                         
