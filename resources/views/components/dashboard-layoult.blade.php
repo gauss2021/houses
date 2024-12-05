@@ -218,6 +218,20 @@
             
           </div>
       </div>
+    
+      <script src="{{ asset('js/jquery.js') }}"></script>                                              
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            // Mon select2
+  
+            $(document).ready(function() {
 
+              $('.tag-basic-multiple').select2({
+                placeholder: "Associer un ou plusieurs tags à votre maison", // Texte du placeholder
+                allowClear: true 
+              });
+
+              });
+        </script>
     </body>
 </html>

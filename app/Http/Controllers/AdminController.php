@@ -16,7 +16,7 @@ class AdminController extends Controller
 
     public function tag(){
 
-        $tags= Tag::all();
+        $tags= Tag::all()->reverse();
 
         return view('admin.tag',[
             'tags'=>$tags
@@ -43,11 +43,21 @@ class AdminController extends Controller
         
     }
 
-    public function edit_tag(){
+    public function edit_tag_get(Tag $tag){
+
+        return view('admin.edit_tag',[
+            'tag'=>$tag
+        ]);
 
     }
 
-    public function delete_tag(){
+    public function delete_tag(Tag $tag){
+
+        $tag->delete();
+
+        session()->flash('success', 'Tag a été supprimé avec succes');
+
+        return back();
 
     }
 

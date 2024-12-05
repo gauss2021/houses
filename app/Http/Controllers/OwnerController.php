@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\File;
@@ -22,7 +23,11 @@ class OwnerController extends Controller
 
     public function add_house_get(){
 
-        return view('owner.add_house');
+        $tags= Tag::all();
+
+        return view('owner.add_house',[
+            'tags'=>$tags
+        ]);
 
     }
 
@@ -30,9 +35,13 @@ class OwnerController extends Controller
 
         try {
             //code...
+
+            // dd(request()->all());
+
             request()->validate(
                 [
                     "title"=> ['required'],
+                    "address"=>['required'],
                     "price"=>['required'],
                     "quotient"=>['required'],
                     "description"=>['required'],
@@ -58,17 +67,39 @@ class OwnerController extends Controller
             // Joindre les chemins par un point-virgule
             $imagesString = implode(';', $imagePaths);
         
-            House::create(
+          $newHouse= House::create(
                 [
                     'title'=> request('title'),
+                    'address'=>request('address'),
                     'description'=>request('description'),
                     'rules'=>request('rules'),
                     'price'=>request('price'),
                     'quotient'=>request('quotient'),
                     'images'=>$imagesString,
-                    'owner_id'=>1,
+                    'owner_id'=>Auth::user()->id,
                 ]
             );
+
+            // Ici je gere la logique concernant les tags
+
+            if( is_array(request('tags')) && count(request('tags')) > 0){
+
+                foreach (request('tags') as $tag) {
+                    # code...
+
+                    $currentTag= Tag::where(['name'=>$tag])->first();
+
+                    if($currentTag){
+                      $newHouse->tags()->attach($currentTag->id);
+                    }
+
+                    
+
+                }
+
+            } 
+            
+            
         
             session()->flash('success', 'Votre Maison a été ajouté avec succès!');
         

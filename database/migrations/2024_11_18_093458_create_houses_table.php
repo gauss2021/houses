@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("owner_id");
             $table->string('title')->require();
+            $table->string('address')->require();
             $table->text("description")->require();
             $table->text("rules")->require();
             $table->string("price")->require();

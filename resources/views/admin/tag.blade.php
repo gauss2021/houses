@@ -34,14 +34,14 @@
                         <td class="px-4 py-3 text-gray-700">{{ $item->name }}</td>
                         <td class="px-4 py-3 flex space-x-2">
                             <!-- Modifier -->
-                            <a  href="{{ "/modifier/detail/maison/"}}" class="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-md hover:bg-blue-400 flex items-center">
+                            <a  href="{{ "/edit/tag/".$item->id}}" class="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-md hover:bg-blue-400 flex items-center">
                                 <i class="bx bx-edit text-md"></i>
                             </a>
                             <!-- Supprimer -->
-                            <button type="submit" form="delete-house" class="px-4 py-2 bg-red-500 text-white text-sm font-semibold rounded-md hover:bg-red-400 flex items-center">
+                            <button type="submit" form="{{'delete-house-'.$item->id }}"  class="px-4 py-2 bg-red-500 text-white text-sm font-semibold rounded-md hover:bg-red-400 flex items-center">
                                 <i class="bx bx-trash text-md"></i>
                             </button>
-                            <form action="/supprimer/maison/}}" method="post" class="hidden" id="delete-house">
+                            <form action="{{ '/delete/tag/'.$item->id  }}" method="post" class="hidden" id="{{'delete-house-'.$item->id }}">
                                 @csrf
                             </form>
                         </td>

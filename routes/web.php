@@ -77,6 +77,10 @@ Route::get('/admin/dashboard',[AdminController::class,'index'])->middleware('aut
 
 Route::get('/admin/tags',[AdminController::class,'tag'])->middleware('auth')->can('is_admin');
 
+Route::get('/edit/tag/{tag}',[AdminController::class,'edit_tag_get'])->middleware('auth')->can('is_admin');
+
+Route::post('/edit/tag/{tag}',[AdminController::class,'edit_tag_post'])->middleware('auth')->can('is_admin');
+
 Route::post('/admin/tags',[AdminController::class,'create_tag'])->middleware('auth')->can('is_admin');
 
 Route::post('/delete/tag/{tag}',[AdminController::class,'delete_tag'])->middleware('auth')->can('is_admin');
