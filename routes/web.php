@@ -40,7 +40,7 @@ Route::get('/maison/{id}', function ($id) {
 Route::get('/inscription',[Register::class,"create"]);
 Route::post('/inscription',[Register::class,'store']);
 
-Route::get('/connexion',[LoginController::class,"create"]);
+Route::get('/connexion',[LoginController::class,"create"])->name('login');
 Route::post('/connexion',[LoginController::class,"store"]);
 Route::post('/deconnexion',[LoginController::class,"destroy"]);
 
@@ -51,214 +51,32 @@ Route::get('/abonnement',function(){
 });
 
 
-Route::get('/admin/dashboard',function(){
+// OWNER ROUTES
 
-    return view("admin.index");
-});
+Route::get('/proprietaire/dashboard',[OwnerController::class,'index'])->middleware('auth')->can('is_owner');
 
-Route::get('/proprietaire/dashboard',function (){
+Route::get('/ajouter/maison',[OwnerController::class,'add_house_get'])->middleware('auth')->can('is_owner');
 
-    $houses = House::where('owner_id', 1)->get();
+Route::post('/ajouter/maison',[OwnerController::class,'add_house_post'])->middleware('auth')->can('is_owner');
 
-    return view('owner.index',[
-        'houses'=>$houses
-    ]);
-});
+Route::get('/detail/{house}',[OwnerController::class,'owner_see_detail_house'])->middleware('auth')->can('is_owner');
 
-Route::get('/ajouter/maison',function(){
-   
-    return view('owner.add_house');
-});
+Route::get('/modifier/detail/maison/{house}',[OwnerController::class,'edit_house_get'])->middleware('auth')->can('is_owner');
 
-Route::post('/ajouter/maison',function(){
+Route::post('/modifier/detail/maison/{house}',[OwnerController::class,'edit_house_post'])->middleware('auth')->can('is_owner');
 
-    // dd(request()->all());
-    
+Route::post('/supprimer/maison/{house}',[OwnerController::class,'delete_house'])->middleware('auth')->can('is_owner');
 
-    try {
-        //code...
-        request()->validate(
-            [
-                "title"=> ['required'],
-                "price"=>['required'],
-                "quotient"=>['required'],
-                "description"=>['required'],
-                "rules"=>['required'],
-                'images.*' => ['required',File::types(['jpg,png,jpeg'])],
-            ]
-        );
-    
-        //    $imagePath= request()->images->store('images');
-    
-        $imagePaths = [];
+Route::get('/proprietaire/profile',[OwnerController::class,'profile_get'])->middleware('auth')->can('is_owner');
 
-        
-    
-    
-         // Parcourir et stocker chaque chemin d'image
-        foreach (request()->file('images') as $file) {
-           $path=$file->store('uploads/houses','public');
-           $imagePaths[] = $path;
-    
-        }
-    
-        // Joindre les chemins par un point-virgule
-        $imagesString = implode(';', $imagePaths);
-    
-        House::create(
-            [
-                'title'=> request('title'),
-                'description'=>request('description'),
-                'rules'=>request('rules'),
-                'price'=>request('price'),
-                'quotient'=>request('quotient'),
-                'images'=>$imagesString,
-                'owner_id'=>1,
-            ]
-        );
-    
-        session()->flash('success', 'Votre Maison a été ajouté avec succès!');
-    
-        return redirect('/proprietaire/dashboard');
-    } catch (\Throwable $th) {
-        //throw $th;
-        dd($th);
-        
-        
-        return back();
-    }
+Route::post('/proprietaire/profile',[OwnerController::class,'profile_post'])->middleware('auth')->can('is_owner');
 
-    
+// ADMIN ROUTES
 
-});
+Route::get('/admin/dashboard',[AdminController::class,'index'])->middleware('auth')->can('is_admin');
 
-Route::get('/detail/{house}',function(House $house){
+Route::get('/admin/tags',[AdminController::class,'tag'])->middleware('auth')->can('is_admin');
 
+Route::post('/admin/tags',[AdminController::class,'create_tag'])->middleware('auth')->can('is_admin');
 
-    return view('owner.show-detail',[
-        'house'=>$house
-    ]);
-
-});
-
-Route::get('/modifier/detail/maison/{house}',function(House $house){
-
-    return view('owner.edit-detail-house',[
-        'house'=>$house
-    ]);
-});
-
-Route::post('/modifier/detail/maison/{house}',function(House $house){
-
-    // dd(request()->all());
-
-    try {
-        //code...
-        request()->validate(
-            [
-                "title"=> ['required'],
-                "price"=>['required'],
-                "quotient"=>['required'],
-                "description"=>['required'],
-                "rules"=>['required'],
-                'images.*' => ['required',File::types(['jpg,png,jpeg'])],
-            ]
-        );
-
-
-        //Detruire toutes les images associés à cette maison avant
-
-        // dd($house);
-
-        $images = explode(';', $house->images);
-
-         // Supprimer chaque image
-        foreach ($images as $image) {
-            if (Storage::exists($image)) {
-                Storage::delete($image);
-            }
-        }
-    
-        //    $imagePath= request()->images->store('images');
-    
-        
-
-        
-    // A Patir d'ici on commence la logique pour la modification
-
-        $imagePaths = [];
-    
-         // Parcourir et stocker chaque chemin d'image
-        foreach (request()->file('images') as $file) {
-           $path=$file->store('uploads/houses','public');
-           $imagePaths[] = $path;
-    
-        }
-    
-        // Joindre les chemins par un point-virgule
-        $imagesString = implode(';', $imagePaths);
-
-        $house->title= request('title');
-
-        $house->description= request('description');
-
-        $house->rules= request('rules');
-
-        $house->price= request('price');
-
-        $house->quotient= request('quotient');
-
-        $house->images= $imagesString;
-
-        $house->rules=  request('rules');
-
-        $house->save();
-    
-        session()->flash('success', 'Modification reussie');
-    
-        return redirect('/proprietaire/dashboard');
-    } catch (\Throwable $th) {
-        //throw $th;
-        dd($th);
-        
-        
-        
-    }
-});
-
-Route::post('/supprimer/maison/{house}',function(House $house){
-
-    $images = explode(';', $house->images);
-
-    // Supprimer chaque image
-    foreach ($images as $image) {
-        if (Storage::exists($image)) {
-            Storage::delete($image);
-        }
-    }
-
-    // Supprimer la maison
-    $house->delete();
-
-    session()->flash('success', 'Suppression effectué avec succes');
-
-    return redirect('/proprietaire/dashboard');
-
-});
-
-Route::get('/proprietaire/profile',function(){
-
-    $user= Auth::user();
-
-    return view('owner.profile',['user'=>$user]);
-});
-
-Route::post('/proprietaire/profile',function(){
-
-});
-
-Route::get('/admin/connexion',[AdminController::class,'login']);
-
-Route::get('/admin/tags',[AdminController::class,'tag']);
-
-Route::post('/admin/tags',[AdminController::class,'create_tag']);
+Route::post('/delete/tag/{tag}',[AdminController::class,'delete_tag'])->middleware('auth')->can('is_admin');

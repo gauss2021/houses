@@ -51,4 +51,9 @@ class User extends Authenticatable
 
         return $this->hasOne(Owner::class);
     }
+
+    public function admin(){
+
+        return $this->hasOne(Admin::class);
+    }
 }

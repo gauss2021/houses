@@ -200,15 +200,18 @@
                     </button>
                     <a href="/" class="cursor-pointer text-slate-400 hover:text-amber-500">Voir la page d'acceuil</a>
                 </div>
+                @auth
                 <div class="flex gap-x-3 items-center">
                   <span class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                     <span class="absolute -inset-1.5"></span>
                     <span class="sr-only">Open user menu</span>
                     <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="" id="user-profil">
                   </span>
-                  <p class="font-bold">Van Davydson</p>
+                  <p class="font-bold">{{ Auth::user()->role==='admin' ? Auth::user()->admin->name : Auth::user()->owner->name }}</p>
                   <i class='bx bx-chevron-down text-slate-400' style="font-size: 26px"></i>
-                </div>
+                </div>  
+                @endauth
+                
               </div>
               {{ $slot }}
             </div>
