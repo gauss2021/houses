@@ -22,14 +22,35 @@
             <p class="font-bold">Prix par mois: <span>{{ number_format($house->price, 0, ',', ' ').' FCFA' }}</span></p>
             <p class="font-bold">Nombre de quotient: <span>{{ $house->quotient }}</span></p>
         </div>
-        <div class="mt-3">
-            <p class="font-bold">Description</p>
-            <p class="mt-3">{{ $house->description }}</p>
+
+        <div class="mt-4">
+            <p class="font-bold">Adresse : <span>{{ $house->address}}</span></p>
         </div>
-        <div class="mt-3">
+
+        <hr class="mt-4">
+        <div class="mt-4">
+            <p class="font-bold">Description</p>
+            <p class="mt-4">{{ $house->description }}</p>
+        </div>
+        <div class="mt-4">
             <p class="font-bold text-red-500">Vos regles</p>
             <p class="mt-3">{{ $house->rules }}</p>
         </div>
+        <hr class="mt-4">
+
+        @if (count($house->tags) >0 )
+            <div class="mt-4 flex flex-wrap gap-3">
+                @foreach ($house->tags as $tag)
+                    <span class="px-4 py-3 bg-gray-300 rounded-xl">
+                        {{ $tag->name }}
+                    </span> 
+                @endforeach
+                 
+            </div>
+        @endif
+
+        
+
         <div class="mt-4 flex justify-between">
             <a href="{{ "/modifier/detail/maison/".$house->id }}" class="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-md hover:bg-blue-400 flex items-center">
                 <i class="bx bx-edit mr-2"></i> Modifier

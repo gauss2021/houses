@@ -114,14 +114,17 @@ class OwnerController extends Controller
     }
 
     public function owner_see_detail_house(House $house){
+        
         return view('owner.show-detail',[
-            'house'=>$house
+            'house'=>$house,
         ]);
     }
 
     public function edit_house_get(House $house){
+        $allTags = Tag::all();
         return view('owner.edit-detail-house',[
-            'house'=>$house
+            'house'=>$house,
+            'allTags'=>$allTags
         ]);
     }
 
@@ -129,9 +132,13 @@ class OwnerController extends Controller
 
         try {
             //code...
+
+            // dd(request()->all());
+
             request()->validate(
                 [
                     "title"=> ['required'],
+                    "address"=>['required'],
                     "price"=>['required'],
                     "quotient"=>['required'],
                     "description"=>['required'],
@@ -174,6 +181,8 @@ class OwnerController extends Controller
             $imagesString = implode(';', $imagePaths);
     
             $house->title= request('title');
+
+            $house->address=request('address');
     
             $house->description= request('description');
     
@@ -185,9 +194,21 @@ class OwnerController extends Controller
     
             $house->images= $imagesString;
     
-            $house->rules=  request('rules');
-    
             $house->save();
+
+            // Logique pour gerer un potentiel changement de tags
+
+            if( is_array(request('tags')) && count(request('tags')) > 0){
+
+                // Supprimer tous les tags qui lui sont associés dans house_tags
+                $house->tags()->detach();
+
+                // Ajouter les nouveaux tags
+                $house->tags()->sync(request('tags'));
+
+            }
+
+
         
             session()->flash('success', 'Modification reussie');
         

@@ -19,6 +19,17 @@
                     </div>
                     
                 </div>
+                <div class="mt-4 flex gap-4">
+                    <div class="w-full flex flex-col space-y-2">
+                        <label for="address" class="font-bold">Adresse (<span class="text-red-500">*</span>)</label>
+                        <input type="text" value="{{ $house->address }}" name="address" class="px-4 py-2 rounded-md" placeholder="Entrer un titre pour votre maison"  required>
+                        @error('address')
+                            <p class="mt-2 text-red-500 font-semibold">{{ $message }}</p> 
+                            
+                        @enderror
+                    </div>
+                    
+                </div>
                 <div class="mt-4 flex gap-3">
                     <div class="w-1/2 flex flex-col space-y-2">
                         <label for="price" class="font-bold">Prix par mois (<span class="text-red-500">*</span>)</label>
@@ -60,6 +71,23 @@
                         @error('images[]')
                             <p class="mt-2 text-red-500 font-semibold">{{ $message }}</p> 
                         @enderror
+                    </div>
+                    
+                </div>
+                <hr class="mt-4">
+                <div class="mt-2">
+                    <div class="w-full flex flex-col space-y-2">
+                        <label for="tags" class="font-bold">Tags</label>
+                        <select id="tags" name="tags[]" class="px-4 py-3 rounded-md w-full tag-basic-multiple focus:outline-none focus:border-none"  multiple="multiple" aria-placeholder="Les quartiers">
+                            <option></option>
+                            @foreach ($allTags as $tag)
+                            <option value="{{ $tag->id }}" 
+                                @if ($house->tags->contains('id', $tag->id)) selected @endif>
+                                {{ $tag->name }}
+                            </option>
+                        @endforeach
+
+                        </select>
                     </div>
                     
                 </div>
