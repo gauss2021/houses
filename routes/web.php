@@ -32,9 +32,10 @@ Route::get('/maisons', function () {
     ]);
 });
 
-Route::get('/maison/{id}', function ($id) {
+Route::get('/maison/{house}', function (House $house) {
 
-    return view('house');
+
+    return view('house',['house'=>$house]);
 });
 
 Route::get('/inscription',[Register::class,"create"]);
@@ -59,13 +60,13 @@ Route::get('/ajouter/maison',[OwnerController::class,'add_house_get'])->middlewa
 
 Route::post('/ajouter/maison',[OwnerController::class,'add_house_post'])->middleware('auth')->can('is_owner');
 
-Route::get('/detail/{house}',[OwnerController::class,'owner_see_detail_house'])->middleware('auth')->can('is_owner');
+Route::get('/detail/{house}',[OwnerController::class,'owner_see_detail_house'])->middleware('auth')->can('is_owner')->can('is_my_house','house');
 
-Route::get('/modifier/detail/maison/{house}',[OwnerController::class,'edit_house_get'])->middleware('auth')->can('is_owner');
+Route::get('/modifier/detail/maison/{house}',[OwnerController::class,'edit_house_get'])->middleware('auth')->can('is_owner')->can('is_my_house','house');
 
-Route::post('/modifier/detail/maison/{house}',[OwnerController::class,'edit_house_post'])->middleware('auth')->can('is_owner');
+Route::post('/modifier/detail/maison/{house}',[OwnerController::class,'edit_house_post'])->middleware('auth')->can('is_owner')->can('is_my_house','house');
 
-Route::post('/supprimer/maison/{house}',[OwnerController::class,'delete_house'])->middleware('auth')->can('is_owner');
+Route::post('/supprimer/maison/{house}',[OwnerController::class,'delete_house'])->middleware('auth')->can('is_owner')->can('is_my_house','house');
 
 Route::get('/proprietaire/profile',[OwnerController::class,'profile_get'])->middleware('auth')->can('is_owner');
 

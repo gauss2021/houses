@@ -56,7 +56,10 @@
         <div id="final-container-houses" class="flex flex-wrap mt-6 sm:justify-between gap-y-10">
 
             @foreach ($houses as $house)
-                <x-items-house :house="$house"></x-items-house>
+                @php
+                $images = $house->images ? explode(';', $house->images) : [];
+                @endphp
+                <x-items-house :id='$house->id' :house="$house" :image='$images[0]' :address='$house->address'></x-items-house>
             @endforeach
         </div>
         <div class="mt-12 sm:flex justify-center">

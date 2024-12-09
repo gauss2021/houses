@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Owner;
 use App\Models\Tag;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +13,17 @@ class AdminController extends Controller
     //
 
     public function index(){
-        return view("admin.index");
+
+        $nbreOwner= count(Owner::all());
+
+        $nbreTenant=count(Tenant::all());
+
+
+
+
+        return view("admin.index",[
+            'nbre0wner'=>$nbreOwner
+        ]);
     }
 
     public function tag(){

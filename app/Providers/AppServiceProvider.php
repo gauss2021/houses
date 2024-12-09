@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\House;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
@@ -33,10 +34,19 @@ class AppServiceProvider extends ServiceProvider
             return $user->role==='admin';
 
         });
+        
 
         Gate::define('is_owner',function(User $user){
 
             return $user->role==='owner';
+
+        });
+
+        // Gate pour se rassurer que seul celui qui a creeé une maison peut le modifier et le supprimer
+
+        Gate::define('is_my_house',function(User $user,House $house){
+
+            return $house->owner->is($user->owner);
 
         });
     }

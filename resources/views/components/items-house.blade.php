@@ -1,16 +1,16 @@
-@props(['house'])
+@props(['house','image','address','id'])
 
 <div class="items-house sm:w-[48%] lg:w-[32%] border border-transparent hover:border-amber-500 rounded-xl group transition-colors duration-300">
     <div id="item-house-head" class="relative sm:h-[200px] md:h-[260px]">
-        <img src={{ $house->image }} alt="" srcset="" class="rounded-xl w-full h-full">
+       <a href="{{ "/maison/".$id }}"><img src={{'http://localhost:8000/storage/'.$image }} alt="" srcset="" class="rounded-xl w-full h-full"> </a> 
         <span class="absolute top-2 left-2 px-3 bg-white rounded-2xl text-amber-500 flex items-center gap-1"><i class='bx bxs-camera text-amber-500' style="font-size: 22px"></i><span class="font-medium">3</span></span>
         <span class="absolute top-2 right-2 p-1 bg-white rounded-full text-amber-500 flex justify-center"><i class='bx bx-heart' style="font-size: 22px"></i></span>
     </div>
     <div id="item-house-body">
-        <h3 class="font-bold mt-4 group-hover:text-amber-500" style="font-family: poppins">{{ $house->title }}</h3>
+     <a href="{{ '/maison/'.$id }}"><h3 class="font-bold mt-4 group-hover:text-amber-500" style="font-family: poppins">{{ $house->title }}</h3> </a>   
         <div class="mt-4 flex gap-1 items-center">
             <i class='bx bx-location-plus text-amber-500' style="font-size: 22px"></i>
-            <p class="font-serif">55 Rue Bonga moungalie</p>
+            <p class="font-serif">{{ $address }}</p>
         </div>
         <p class="mt-2 font-medium" style="font-family: poppins">Appartement</p>
 

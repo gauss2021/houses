@@ -14,7 +14,19 @@ class OwnerController extends Controller
     //
 
     public function index(){
-        $houses = House::where('owner_id', 1)->get();
+
+
+        $user= Auth::user();
+
+        // dd($user->owner->houses);
+
+        $houses=$user->owner->houses;
+
+        // dd($houses);
+
+        // $houses = Auth::user();
+        // dd(Auth::user()->name);
+        // dd($houses);
 
         return view('owner.index',[
             'houses'=>$houses
@@ -76,7 +88,7 @@ class OwnerController extends Controller
                     'price'=>request('price'),
                     'quotient'=>request('quotient'),
                     'images'=>$imagesString,
-                    'owner_id'=>Auth::user()->id,
+                    'owner_id'=>Auth::user()->owner->id,
                 ]
             );
 
