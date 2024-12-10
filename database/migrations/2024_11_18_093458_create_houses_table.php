@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("owner_id");
+            $table->foreignId("owner_id")->constrained()->cascadeOnDelete();
             $table->string('title')->require();
             $table->string('address')->require();
             $table->text("description")->require();

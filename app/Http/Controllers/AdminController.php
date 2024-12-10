@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\House;
 use App\Models\Owner;
 use App\Models\Tag;
 use App\Models\Tenant;
@@ -18,11 +19,18 @@ class AdminController extends Controller
 
         $nbreTenant=count(Tenant::all());
 
+        $recenteHouses= House::with("owner")->latest()->paginate(5);
+
+        $availableHouses=count(House::all());
+
 
 
 
         return view("admin.index",[
-            'nbre0wner'=>$nbreOwner
+            'nbreOwner'=>$nbreOwner,
+            'nbreTenant'=>$nbreTenant,
+            'recenteHouses'=>$recenteHouses,
+            'availableHouses'=>$availableHouses
         ]);
     }
 
@@ -72,6 +80,33 @@ class AdminController extends Controller
         return back();
 
     }
+
+    public function owners(){
+        $allOwner= Owner::with(['user'])->latest()->paginate(8);
+        return view('admin.owners',[
+            'allOwner'=>$allOwner,
+        ]);
+    }
+
+    public function tenants(){
+        $allTenant= Tenant::with('user')->latest()->paginate(8);
+        return view('admin.tenants',[
+            'allTenant'=>$allTenant
+        ]);
+    }
+
+    public function delete_owner(Owner $owner){
+
+        $owner->delete();
+
+        session()->flash('success', 'Suppression effectuée avec succes');
+
+        return back();
+
+    }
+
+    
+
 
     // public function store(Request $request){
         

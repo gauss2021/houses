@@ -27,21 +27,21 @@
     [ 
       'id'=>1,
       'title'=>'Proprietaires',
-      'url'=>'/proprietaire/dashboard',
+      'url'=>'/admin/proprietaires',
       'icon'=>'bx bx-group'
 
     ],
     [ 
       'id'=>2,
       'title'=>'Locataires',
-      'url'=>'/proprietaire/dashboard',
+      'url'=>'/admin/locataires',
       'icon'=>'bx bx-user'
 
 ],
     [ 
       'id'=>3,
       'title'=>'Toutes les maisons',
-      'url'=>'/proprietaire/dashboard',
+      'url'=>'/admin/houses',
       'icon'=>'bx bx-building-house'
 
     ],

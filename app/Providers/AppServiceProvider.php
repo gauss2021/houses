@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Schema::defaultStringLength(191);
 
-        Model::preventLazyLoading();
+        // Model::preventLazyLoading();
 
         Gate::define('is_admin',function(User $user){
 

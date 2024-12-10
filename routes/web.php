@@ -85,3 +85,11 @@ Route::post('/edit/tag/{tag}',[AdminController::class,'edit_tag_post'])->middlew
 Route::post('/admin/tags',[AdminController::class,'create_tag'])->middleware('auth')->can('is_admin');
 
 Route::post('/delete/tag/{tag}',[AdminController::class,'delete_tag'])->middleware('auth')->can('is_admin');
+
+Route::get('/admin/proprietaires',[AdminController::class,'owners']);
+
+Route::get('/admin/locataires',[AdminController::class,'tenants']);
+
+Route::post('/admin/delete/owner/{owner}',[AdminController::class,'delete_owner']);
+
+// Route::get('/admin/detail-owner/{owner}',[AdminController::class,'detail_owner']);
